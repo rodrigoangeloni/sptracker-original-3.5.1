@@ -49,10 +49,10 @@ class CallWrapper:
 
     def __call__(self, *args, **kw):
         if '__sync' in kw:
-            async = not kw['__sync']
+            is_async = not kw['__sync']
             del kw['__sync']
         else:
-            async = self.ld.async
+            is_async = self.ld.is_async
         if '__db_callback' in kw:
             add_callback = kw['__db_callback']
             del kw['__db_callback']
@@ -63,7 +63,7 @@ class CallWrapper:
             resultID = self.callCnt
             self.callCnt += 1
         self.tracebacks[resultID] = traceback.extract_stack()
-        if async:
+        if is_async:
             self.ld.worker.apply_async(self.wrapper, args, kw, callback=functools.partial(self.done, resultID=resultID, add_callback=add_callback))
         else:
             res = self.ld.worker.apply(self.wrapper, args, kw)
@@ -116,8 +116,8 @@ class LapDatabase:
 
     def __init__(self, lapHistoryFactory, dbMode, backendFactory):
         self.lock = RLock()
-        self.async = True
-        self.worker = Worker(self.async)
+        self.is_async = True
+        self.worker = Worker(self.is_async)
         self.dbMode = dbMode
         self.wrappers = []
         if self.dbMode == self.DB_MODE_READONLY:

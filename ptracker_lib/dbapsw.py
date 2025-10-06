@@ -21,9 +21,14 @@
 ################################################################################
 import os.path
 import shutil
-import apsw
+try:
+    import apsw
+    #apsw.config(apsw.SQLITE_CONFIG_SERIALIZED)
+    APSW_AVAILABLE = True
+except ImportError:
+    APSW_AVAILABLE = False
+    apsw = None
 import time
-#apsw.config(apsw.SQLITE_CONFIG_SERIALIZED)
 import traceback
 import threading
 from ptracker_lib.helpers import *
@@ -144,6 +149,8 @@ class ApswConnectionWrapper:
 class SqliteBackend(GenericBackend):
 
     def __init__(self, lapHistoryFactory, dbname, perform_backups, force_version = None):
+        if not APSW_AVAILABLE:
+            raise ImportError("APSW module is not available. Please install it with: pip install apsw")
         self.dbname = dbname
         acinfo("Using database '%s'" % dbname)
         self.blob = "BLOB"

@@ -2,6 +2,7 @@
 # Based on original DEPENDENCIES.txt but updated for Python 3.11 compatibility
 
 # Core dependencies
+apsw==3.50.4.0
 bottle==0.13.4
 cherrypy==18.10.0
 cheroot==11.0.0
