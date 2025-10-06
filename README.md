@@ -29,19 +29,36 @@ See [CHANGELOG.md](CHANGELOG.md) for complete details.
 ## 📋 Requirements
 
 - **Python 3.11.8** (tested and verified)
-- **Windows 10/11** (for compiled .exe)
+- **Windows 10/11** (for compiled .exe) or **Linux** (Ubuntu 18.04+)
 - **Assetto Corsa Dedicated Server**
+
+### Platform Support
+
+| Platform | Status | Binary Format | Notes |
+|----------|--------|---------------|-------|
+| Windows 10/11 | ✅ Tested | `.exe` | Primary development platform |
+| Linux (Ubuntu 22.04) | ✅ Tested | ELF binary | Via WSL or native |
+| Linux (Other distros) | ⚠️ Should work | ELF binary | May need dependency adjustments |
 
 ## 🚀 Quick Start
 
-### For Users (Compiled .exe)
+### For Users (Compiled Binary)
 
+#### Windows
 1. Download `stracker.exe` from the releases page
 2. Copy to your Assetto Corsa server directory
 3. Configure `stracker.ini` to point to your AC server
 4. Run `stracker.exe`
 
+#### Linux
+1. Download `stracker_linux_x86.tgz` from the releases page
+2. Extract to your Assetto Corsa server directory
+3. Configure `stracker.ini` to point to your AC server
+4. Run `./stracker`
+
 ### For Developers (Source)
+
+#### Windows Build
 
 ```bash
 # Clone the repository
@@ -55,8 +72,37 @@ python -m venv .venv
 # Install dependencies
 pip install -r requirements.txt
 
-# Build stracker.exe
+# Build stracker.exe (Windows)
 python create_release.py --test_release_process --windows_only --stracker_only 3.5.2
+```
+
+#### Linux Build (WSL or Native)
+
+```bash
+# Install Python 3.11 on Ubuntu/Debian
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.11 python3.11-venv python3.11-dev build-essential libpq-dev libsqlite3-dev
+
+# Clone repository
+git clone https://github.com/rodrigoangeloni/sptracker-original-3.5.1.git
+cd sptracker-original-3.5.1
+
+# Create virtual environment
+python3.11 -m venv .venv
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Build stracker (Linux)
+chmod +x build_linux.sh
+./build_linux.sh 3.5.2
+
+# Or manually:
+python create_release.py --test_release_process --linux_only --stracker_only 3.5.2
+```
+
+**For detailed Linux build instructions**, see [BUILD_LINUX.md](BUILD_LINUX.md)
 ```
 
 ## 📦 Dependencies
