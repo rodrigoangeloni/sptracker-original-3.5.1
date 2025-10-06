@@ -36,7 +36,11 @@
 """Various hacks for transparent python 2 / python 3 support"""
 
 import sys
-from collections import Iterable
+# Python 3.10+ moved Iterable to collections.abc
+try:
+    from collections.abc import Iterable
+except ImportError:
+    from collections import Iterable
 import time
 
 
