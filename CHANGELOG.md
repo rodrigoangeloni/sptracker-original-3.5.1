@@ -49,4 +49,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.5.1] - 2018 (Original Release)
 
-Initial release with Python 3.3 support.
+Original release by **Neys** with Python 3.3 support.
+
+### Note About Version History
+
+The original project (versions 3.0.x - 3.5.1) did not maintain a formal changelog. 
+Based on the TODO.txt file and code comments, we can infer there were several major versions:
+
+- **3.0.x - 3.1.x**: Early releases (details unknown)
+- **3.2.x**: Major feature additions mentioned in TODO.txt
+  - Live map administration
+  - Chat logging
+  - Lap comparisons
+  - Swear filter/autokick
+  - Various HTTP interface improvements
+- **3.3.x**: Continued development (features in TODO.txt)
+  - Interface ports
+  - Animation improvements
+- **3.4.x**: Unknown (no documentation found)
+- **3.5.0 - 3.5.1**: Final Python 3.3 release (2018)
+  - py2exe build system
+  - CherryPy 8.1.2
+  - PostgreSQL and SQLite support with APSW
+
+For detailed feature requests and planned work, see the [TODO.txt](TODO.txt) file which 
+contains the original development roadmap from Neys.
