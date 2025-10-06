@@ -56,7 +56,27 @@ except ImportError:
 **Causa**: PyInstaller 6.x no detecta automáticamente módulos en `--path ..` (comportamiento diferente a PyInstaller 2.x del 2018)
 
 **Estado**: 🔧 EN PROGRESO  
-**Solución a probar**: Agregar `--hidden-import ptracker_lib.async_worker` y otros módulos críticos
+**Solución aplicada**: Agregar todos los módulos de ptracker_lib como `--hidden-import`
+
+---
+
+### ⚠️ Problema #3: cherrypy.wsgiserver.wsgiserver3 no existe en CherryPy moderno
+
+**Fecha**: 6 oct 2025  
+**Error**: `ERROR: Hidden import 'cherrypy.wsgiserver.wsgiserver3' not found`  
+
+**Detalles**:
+- CherryPy 8.1.2 (2018) tenía `cherrypy.wsgiserver.wsgiserver3`
+- CherryPy 18.10.0 (2025) movió el WSGI server a paquete separado **cheroot**
+- Versiones 9.x y 10.x de CherryPy usan `inspect.getargspec` (removido en Python 3.11)
+
+**Solución**: 
+- Usar CherryPy 18.10.0 (compatible con Python 3.11)
+- Reemplazar `--hidden-import cherrypy.wsgiserver.wsgiserver3` con `--hidden-import cheroot.wsgi`
+- Agregar `cheroot==11.0.0` a requirements.txt
+
+**Estado**: ✅ ARREGLADO  
+**Commit**: Pendiente
 
 ---
 
