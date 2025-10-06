@@ -41,14 +41,22 @@ except ImportError:
 
 ---
 
-### ⏳ Problema #2: [Siguiente problema a documentar]
+### ⚠️ Problema #2: Build con PyInstaller - ptracker_lib no empaquetado
 
-**Fecha**: Pendiente  
-**Archivo**: Pendiente  
-**Error**: Pendiente  
-**Causa**: Pendiente  
-**Solución**: Pendiente  
-**Estado**: 🔍 POR INVESTIGAR
+**Fecha**: 6 oct 2025  
+**Comando**: PyInstaller con parámetros originales del 2018  
+**Resultado**: ❌ BUILD EXITOSO PERO FALLA EN RUNTIME  
+
+**Detalles**:
+- Build completa sin errores
+- Ejecutable generado: 20.3 MB
+- `stracker.exe --help` funciona localmente
+- **FALLA EN SERVER MANAGER**: `ModuleNotFoundError: No module named 'ptracker_lib.async_worker'`
+
+**Causa**: PyInstaller 6.x no detecta automáticamente módulos en `--path ..` (comportamiento diferente a PyInstaller 2.x del 2018)
+
+**Estado**: 🔧 EN PROGRESO  
+**Solución a probar**: Agregar `--hidden-import ptracker_lib.async_worker` y otros módulos críticos
 
 ---
 
@@ -71,15 +79,22 @@ except ImportError:
 - ✅ Implementado import con try/except
 - ✅ **PROBADO Y FUNCIONA**: `stracker.py --help` ejecuta correctamente
 
+#### 16:15 - Build con PyInstaller 6.16.0
+- ✅ Ejecutado comando original del 2018
+- ✅ Build completado sin errores críticos
+- ✅ Ejecutable generado: 20.3 MB
+- ✅ **PROBADO Y FUNCIONA**: `stracker.exe --help` ejecuta correctamente
+
 ---
 
 ## 🎯 Próximos Pasos
 
-1. ⏳ **Probar stracker.py --help** después del fix de `Iterable`
-2. ⏳ Identificar siguiente error de compatibilidad (si existe)
-3. ⏳ Documentar y arreglar siguiente problema
-4. ⏳ Repetir hasta que `stracker.py --help` funcione completamente
-5. ⏳ Hacer commit de todos los fixes juntos
+1. ✅ **Probar stracker.py --help** - FUNCIONA
+2. ✅ **Build con PyInstaller** - EXITOSO (20.3 MB)
+3. ⏳ **Deployar en Server Manager** y probar en producción
+4. ⏳ Buscar otros warnings de compatibilidad (SyntaxWarning, etc.)
+5. ⏳ Actualizar versión a 3.5.2
+6. ⏳ Crear release tag
 
 ---
 
