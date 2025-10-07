@@ -6,7 +6,7 @@ block_cipher = None
 
 a = Analysis(
     ['ptracker-server-dist.py'],
-    pathex=['E:\\Steam\\SteamApps\\common\x07ssettocorsa\x07pps\\python\\system', 'stracker', 'stracker/externals'],
+    pathex=['E:\\Steam\\SteamApps\\common\\assettocorsa\\apps\\python\\system', 'stracker', 'stracker/externals'],
     binaries=[],
     datas=[],
     hiddenimports=[],

@@ -125,7 +125,7 @@ ptracker_lib/stdlib64/CreateFileHook.dll""".split("\n")
 
     os.environ['PYTHONPATH'] = r"..\system;..\..\system"
     print("------------------- Building ptracker.exe -------------------------------")
-    assert 0 == os.system("pyinstaller --name ptracker --clean -y --onefile --windowed --paths E:\Steam\SteamApps\common\assettocorsa\apps\python\system --additional-hooks-dir=stracker/pyinstaller-hooks --path stracker --path stracker/externals ptracker-server-dist.py")
+    assert 0 == os.system(r"pyinstaller --name ptracker --clean -y --onefile --windowed --paths E:\Steam\SteamApps\common\assettocorsa\apps\python\system --additional-hooks-dir=stracker/pyinstaller-hooks --path stracker --path stracker/externals ptracker-server-dist.py")
     #assert 0 == os.system("python setup-ptracker-server.py py2exe")
 
     def checksum(buffer):

@@ -2,14 +2,31 @@
 
 # this python file is used to configure the linux build
 plink = r"C:\Program Files\PuTTY\plink.exe"
+pscp = r"C:\Program Files\PuTTY\pscp.exe"
 git = r"C:\Program Files\Git\cmd\git.exe"
-remote_path = "/drives/D/AC_dev/sptracker/"
-host = "neys@192.168.1.77"
+
+# Configuración para WSL como si fuera una PC Linux en LAN
+# WSL se trata como máquina remota independiente con su propio filesystem
+remote_path = "~/sptracker-build"
+host = "roan@172.22.51.140"
+password = "roan"
 
 # command executed to start remote build
-# Note: This assumes that remote_path is actually a shared folder of a VM. If this is not the case, you should pull the latest changes from the repository
-REMOTE_BUILD_CMD = [plink, "-pw", "neys", host, "cd " + remote_path + " && sh create_release.sh"]
+# Primero sincroniza el código al directorio remoto, luego ejecuta el build
+REMOTE_BUILD_CMD = [
+    plink, "-pw", password, host,
+    f"rm -rf {remote_path} && "
+    f"mkdir -p {remote_path} && "
+    f"cp -r /mnt/c/Users/Rodrigo.DESKTOP-I1TEA6K/source/repos/sptracker-original-3.5.1/* {remote_path}/ && "
+    f"cd {remote_path} && sh create_release.sh"
+]
 
 # command to copy the resulting tar.gz file into the local filesystem
-# (use None if you are using a shared folder)
-REMOTE_COPY_RESULT = None
+# Copia desde el directorio nativo de Linux (no desde /mnt/c/)
+# Nota: pscp no expande ~ correctamente, usar ruta absoluta
+REMOTE_COPY_RESULT = [
+    pscp,
+    "-pw", password,
+    f"{host}:/home/roan/sptracker-build/stracker/stracker_linux_x86.tgz",
+    "stracker/stracker_linux_x86.tgz"
+]
