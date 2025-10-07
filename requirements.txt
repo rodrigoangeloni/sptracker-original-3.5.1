@@ -1,21 +1,9 @@
 # Python Package Requirements for stracker
-# Based on original DEPENDENCIES.txt but updated for Python 3.11 compatibility
-
-# Core dependencies
-apsw==3.50.4.0
-bottle==0.13.4
-cherrypy==18.10.0
-cheroot==11.0.0
-psycopg2-binary==2.9.10
-python-dateutil==2.9.0.post0
-wsgi-request-logger==0.4.6
-simplejson==3.20.2
-
-# Additional dependencies (not in original DEPENDENCIES.txt but required)
-pygal==3.0.5
-
-# Build tool (replaces py2exe from original)
-pyinstaller==6.16.0
-
-# Original DEPENDENCIES.txt listed:
-# - py2exe==0.9.2.0 (obsolete, replaced by pyinstaller)
+# Based on original DEPENDENCIES.txt but updated for Python 3.10 compatibility
+bottle==0.12.7
+cherrypy==8.1.2
+psycopg2>=2.6.1
+py2exe==0.9.2.0
+python-dateutil==2.5.1
+wsgi-request-logger==0.4.1
+simplejson==3.8.0
