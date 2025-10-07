@@ -20,7 +20,6 @@
 """Test sparktext rendering"""
 
 from pygal import Line, Bar
-from pygal._compat import u
 
 
 def test_basic_sparktext():

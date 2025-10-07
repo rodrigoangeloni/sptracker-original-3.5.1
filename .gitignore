@@ -1,0 +1,37 @@
+# Entorno virtual
+.venv/
+venv/
+
+# Archivos de dependencias
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de log y salida
+*.log
+*.out
+*.prof
+
+# Archivos de configuración local
+*.env
+*.local
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de compilación
+build/
+dist/
+*.egg-info/
+
+# Archivos de Windows
+*.exe
+*.dll
+*.bat
+*.cmd
+
+# Otros
+*.sublime*
+*.vscode/

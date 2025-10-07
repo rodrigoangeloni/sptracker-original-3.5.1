@@ -38,9 +38,9 @@ from ptracker_lib.dbgeneric import decompress
 from ptracker_lib.helpers import isProMode, format_time_ms, format_datetime, unixtime2datetime, datetime2unixtime, format_time, localtime2utc, utc2localtime, unixtime_now, format_time_s, setFormatUnits
 from ptracker_lib import read_ui_data
 
-import pygal # needed for pyinstaller
+import pygal
 from pygal import Line, Pie, DateLine, XY, Config, StackedLine
-from pygal.style import LightSolarizedStyle,LightStyle,CleanStyle
+from pygal.style import LightSolarizedStyle, LightStyle, CleanStyle
 
 import simplejson as json
 
