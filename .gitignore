@@ -39,6 +39,7 @@ ptracker-server-dist.py
 # Build artifacts de stracker
 stracker/null
 stracker/*.tgz
+stracker/stracker-default.ini
 
 # Otros
 *.sublime*
