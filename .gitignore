@@ -26,23 +26,19 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+# Releases generados
 versions/*
 !versions/.gitkeep
+
+# Archivos temporales de build
 nsis_temp_files*
 ptracker.nsh
-*.spec
 ptracker-server-dist.py
 
 # Build artifacts de stracker
 stracker/null
-stracker/stracker-default.ini
 stracker/*.tgz
-
-# Archivos de Windows
-*.exe
-*.dll
-*.bat
-*.cmd
 
 # Otros
 *.sublime*
