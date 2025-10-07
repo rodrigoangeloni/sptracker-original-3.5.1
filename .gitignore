@@ -1,6 +1,7 @@
 # Entorno virtual
 .venv/
 venv/
+remote_settings.py
 
 # Archivos de dependencias
 __pycache__/
@@ -25,6 +26,17 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+versions/*
+!versions/.gitkeep
+nsis_temp_files*
+ptracker.nsh
+*.spec
+ptracker-server-dist.py
+
+# Build artifacts de stracker
+stracker/null
+stracker/stracker-default.ini
+stracker/*.tgz
 
 # Archivos de Windows
 *.exe

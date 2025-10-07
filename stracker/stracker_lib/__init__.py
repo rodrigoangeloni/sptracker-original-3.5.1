@@ -1,1 +1,1 @@
-version = '--windows'
+version = '3.5.2'
