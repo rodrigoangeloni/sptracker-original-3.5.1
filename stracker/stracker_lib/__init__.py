@@ -1,1 +1,1 @@
-version = '3.5.1-debug'
+version = '3.5.3'
