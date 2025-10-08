@@ -1,8 +1,16 @@
-bottle==0.13.4
-cherrypy==8.1.2
-psycopg2==2.9.10
-py2exe==0.9.2.0
-python-dateutil==2.8.2
-wsgi-request-logger==0.4.1
-simplejson==3.8.0
-pyinstaller==5.13.2
+# Dependencias principales
+bottle>=0.12.0
+cherrypy>=18.0.0
+psycopg2-binary>=2.9.0
+python-dateutil>=2.8.0
+simplejson>=3.8.0
+
+# Interfaz gráfica (PySide6 para compatibilidad moderna)
+PySide6>=6.0.0
+
+# Desarrollo y build
+pyinstaller>=5.0.0
+py2exe>=0.9.2.0
+
+# Logging y utilidades
+wsgi-request-logger>=0.4.0
