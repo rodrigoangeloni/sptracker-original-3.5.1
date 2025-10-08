@@ -17,12 +17,38 @@
 
 import sys
 import os
-import ptracker_lib.expand_ac
+
+# Early logging setup for debugging
+import tempfile
+temp_log = os.path.join(tempfile.gettempdir(), "ptracker_debug.log")
+try:
+    with open(temp_log, "w") as f:
+        f.write("Starting ptracker-server.py\n")
+        f.write(f"Python version: {sys.version}\n")
+        f.write(f"Arguments: {sys.argv}\n")
+        f.write(f"Current directory: {os.getcwd()}\n")
+except:
+    pass  # Ignore if we can't write debug log
+
+try:
+    import ptracker_lib.expand_ac
+    try:
+        with open(temp_log, "a") as f:
+            f.write("Successfully imported ptracker_lib.expand_ac\n")
+    except:
+        pass
+except Exception as e:
+    try:
+        with open(temp_log, "a") as f:
+            f.write(f"Failed to import ptracker_lib.expand_ac: {e}\n")
+    except:
+        pass
+    raise
 
 if "/check_install" == sys.argv[1]:
     try:
         import ptracker_lib
-        import PySide.QtGui
+        import PySide6.QtGui
         open(ptracker_lib.expand_ac.expand_ac("Assetto Corsa","logs","log.txt"), "r")
         print("Installation seems to be ok")
         os._exit(7)
@@ -51,7 +77,22 @@ import acsys
 from ptracker_lib.client_server.client_server import *
 import ptracker_lib.client_server.client_server_impl
 
-from PySide import QtGui
+try:
+    from PySide6 import QtGui, QtWidgets
+    PYSIDE_AVAILABLE = True
+except ImportError:
+    # Create a dummy QtGui class if PySide6 is not available
+    class QtGui:
+        class QApplication:
+            @staticmethod
+            def exit(code=0):
+                pass
+    class QtWidgets:
+        class QApplication:
+            @staticmethod
+            def exit(code=0):
+                pass
+    PYSIDE_AVAILABLE = False
 
 #ptracker_lib.client_server.client_server_impl.debug_protocol = 1
 
@@ -229,7 +270,7 @@ def work(pid):
         acsim.ac.log = lambda *args: print(" ".join(map(str, args)))
         ptracker.acShutdown()
         sys.stdout.flush()
-        QtGui.QApplication.exit(0)
+        QtWidgets.QApplication.exit(0)
         sys.exit(0)
     except:
         print("Fatal error in ptracker-server:")
