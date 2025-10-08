@@ -40,6 +40,11 @@ ptracker-server-dist.py
 stracker/null
 stracker/*.tgz
 
+# Directorios temporales y de testing
+temp_sptracker/
+test_install/
+temp_*/
+
 # Otros
 *.sublime*
 *.vscode/
